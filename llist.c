@@ -56,16 +56,23 @@ void pop(struct List* list, int depth)
 
 void* freeNode(struct Node* node)
 {
+  // Recursively check if node is last 
+  // If not last move to next 
   if (node->next != NULL)
   {
     node->next = freeNode(node->next);
   }
+  // When node is last return free 
+  // Return NULL to make previous node the last
   free(node);
   return NULL;
 }
 
 void freeList(struct List* list)
 {
+  // Initialize first node 
+  // Free all nodes 
+  // Free list
   struct Node* first = list->first;
   freeNode(first);
   free(list);
