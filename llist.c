@@ -105,7 +105,7 @@ int main()
   // Check results 
   iter(list);
 
-  free(list);
+  freeList(list);
   
   return 0;
 }
