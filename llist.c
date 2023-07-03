@@ -37,7 +37,6 @@ void pop(struct List* list, int depth)
     // Free previously stored first node 
     list->first = node->next;
     free(node);
-    return;
   }
   else 
   {
