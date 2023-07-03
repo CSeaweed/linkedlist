@@ -54,6 +54,22 @@ void pop(struct List* list, int depth)
   }
 }
 
+void freeNodes(struct Node* node)
+{
+  if (node->next != NULL)
+  {
+    freeNodes(node);
+  }
+  free(node);
+}
+
+void freeList(struct List* list)
+{
+  struct Node* node = list->first;
+  freeNodes(node);
+  free(list);
+}
+
 void iter(struct List *list)
 {
   // Initialize loop by storing first node into a buffer 
@@ -88,7 +104,8 @@ int main()
   // Check results 
   iter(list);
 
-  free(list);
+  freeList(list);
+  
   return 0;
 }
 
