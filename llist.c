@@ -26,14 +26,33 @@ void push(struct List* list, int value)
   list->first = node;
 }
 
-void pop(struct List* list)
+void pop(struct List* list, int depth)
 {
-  // Store first to a buffer
-  // Change first to the node after first node 
-  // Free previous first  
-  struct Node* first = list->first;
-  list->first = first->next;
-  free(first);
+  // Initialize first node 
+  // Choose correct operation 
+  struct Node* node = list->first;
+  if (depth == 0) 
+  {
+    // Replace previous first with next
+    // Free previously stored first node 
+    list->first = node->next;
+    free(node);
+    return;
+  }
+  else 
+  {
+    // Iterate to depth - 1
+    // Replace previous node with next node
+    // Replace current next with next of next  
+    // Free next 
+    for (int index = 0; index < depth - 1; index++)
+    {
+      node = node->next;
+    }
+    struct Node* to_be_popped = node->next;
+    node->next = to_be_popped->next;
+    free(to_be_popped);
+  }
 }
 
 void iter(struct List *list)
@@ -60,8 +79,8 @@ int main()
   push(list, 125);
 
   // Pop values 
-  pop(list);
-  pop(list);
+  pop(list, 2);
+  pop(list, 0);
 
   // Push more values 
   push(list, 3);
