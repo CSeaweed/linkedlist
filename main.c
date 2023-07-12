@@ -36,6 +36,10 @@ int main()
 
   // Check results 
   iter(list);
+  
+  reverse(list);
+
+  iter(list);
 
   freeList(list);
   

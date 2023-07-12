@@ -77,3 +77,29 @@ void freeList(struct List* list)
   free(list);
 }
 
+void reverse(struct List* list)
+{
+  // Initialize first and next node
+  struct Node* previous = malloc(sizeof(struct Node));
+  struct Node* node = list->first;
+  struct Node* next = node->next;
+  
+  if (node == NULL) { return; }
+  while (next != NULL)
+  {
+    previous = node;
+    list->first = next;
+    node->next = next->next;
+    next->next = node;
+    node = node->next;
+    next = node->next;
+  }
+  node->next = list->first;
+  list->first = node;
+  previous->next = NULL;
+  free(previous);
+}
+
+
+
+
