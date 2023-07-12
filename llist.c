@@ -97,7 +97,6 @@ void reverse(struct List* list)
   node->next = list->first;
   list->first = node;
   previous->next = NULL;
-  free(previous);
 }
 
 
