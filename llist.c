@@ -80,7 +80,7 @@ void freeList(struct List* list)
 void reverse(struct List* list)
 {
   // Initialize first and next node
-  struct Node* previous = malloc(sizeof(struct Node));
+  struct Node* previous = NULL;
   struct Node* node = list->first;
   struct Node* next = node->next;
   
